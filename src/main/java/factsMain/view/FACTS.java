@@ -84,6 +84,7 @@ public class FACTS {
         System.out.println("9. ***En proceso***.");
         System.out.println("10. Sortir");
         System.out.println("-------------------------------");
+        System.out.println("-------------------------------");
 
     }
 
@@ -104,6 +105,7 @@ public class FACTS {
         fix.writerProducteInFile(myProducte);
         }
     }
+    
 
     private static void registrarClient() throws IOException {
         String nif = ask.askNif("Digam el nif del client a registrar: ");
