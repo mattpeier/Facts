@@ -10,12 +10,25 @@ package factsMain.Model;
  */
 public class Producte {
     
+   private int codigo;
    private String producto;
    private double precio;
 
-    public Producte(String producto, double precio) {
+    public Producte(int codigo,String producto, double precio) {
+        
+        this.codigo = codigo;
         this.producto = producto;
         this.precio = precio;
+        
+        
+    }
+
+    public Producte(int codigo) {
+        this.codigo = codigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
     }
 
     public String getProducto() {
@@ -26,6 +39,10 @@ public class Producte {
         return precio;
     }
 
+    public void setCodigo(int codigo) {
+        this.codigo = codigo;
+    }
+
     public void setProducto(String producto) {
         this.producto = producto;
     }
@@ -34,5 +51,9 @@ public class Producte {
         this.precio = precio;
     }
 
-   
+      @Override
+    public boolean equals(Object obj) {
+        Producte p = (Producte) obj;
+        return this.codigo==(p.getCodigo());
+    }
 }

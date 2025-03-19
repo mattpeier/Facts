@@ -37,7 +37,7 @@ public class FACTS {
         int opcion = 0;
         do {
             menuFack();
-            opcion = ask.askInt("Que vols fer avuí:  ", "Aquesta opció no es valida, posa una correcta.", 1, 6);
+            opcion = ask.askInt("Que vols fer avuí:  ", "Aquesta opció no es valida, posa una correcta.", 1, 10);
             switch (opcion) {
                 case 1:
                     registraProducto();
@@ -50,45 +50,73 @@ public class FACTS {
                     break;
                 case 4:
                     System.out.println("Aquest apartata encara esta en proces. :)");
-                    break;
                 case 5:
+                    System.out.println("Aquest apartata encara esta en proces. :)");
+                case 6:
+                    System.out.println("Aquest apartata encara esta en proces. :)");
+                    break;
+                case 7:
+                    System.out.println("Aquest apartata encara esta en proces. :)");
+                    break;
+                case 8:
+                    System.out.println("Aquest apartata encara esta en proces. :)");
+                    break;
+                case 9:
+                    System.out.println("Aquest apartata encara esta en proces. :)");
+                    break;
+                case 10:
                     System.out.println("Has sortit.");
 
-                    return;
             }
-        } while (opcion != 5);
+        } while (opcion != 10);
 
     }
-
     private static void menuFack() {
         System.out.println("-------- Estampats Myck -------");
         System.out.println("1. Registrar un nou producte.");
         System.out.println("2. Registrar un nou client.");
         System.out.println("3. Cambiar preu d'un producto.");
         System.out.println("4. ***En proceso***.");
-        System.out.println("5. Sortir");
+        System.out.println("5. ***En proceso***.");
+        System.out.println("6. ***En proceso***.");
+        System.out.println("7. ***En proceso***.");
+        System.out.println("8. ***En proceso***.");
+        System.out.println("9. ***En proceso***.");
+        System.out.println("10. Sortir");
         System.out.println("-------------------------------");
 
     }
 
     private static void registraProducto() throws IOException {
-        String producto = ask.askProducto("Que producte registaras avuí (ponlo sin espacios)? [CamisetaSimple | Bossadetela | Fundademóvil | Fundadetablet] : ", "El prodcuto que quieres registrar no concuerda con nuestros datos, intenta-ho.", "CamisetaSimple", "Bossadetela", "Fundademóvil", "Fundadetablet");
+        int codigo = ask.askInt("insereix el codi del producte: ", "Aquest codi no es valid.", 1, 10000);
+        if(productes.contains(new Producte(codigo))) {
+            System.out.println("Aquest codi ja esta utiliztat. ");
+        } else  {
+            System.out.println("PRODUCTOS VALIDOS: \n"
+                    + "CAMISETASIMPLE\n"
+                    + "BOSSADETELA\n"
+                    + "FUNDADEMÓVIL\n"
+                    + "FUNDADETABLET");
+        String producto = ask.askProducto("Que producte registaras avuí? : ", "El prodcuto que quieres registrar no concuerda con nuestros datos, intenta-ho.", "CamisetaSimple", "Bossadetela", "Fundademóvil", "Fundadetablet");
         double precio = ask.askDouble("Ingresa el preu de tu producte: ", "Ingresa el preu correctamente", 0);
-        Producte myProducte = new Producte(producto, precio);
+        Producte myProducte = new Producte(codigo, producto, precio);
         productes.add(myProducte);
         fix.writerProducteInFile(myProducte);
-        return;
+        }
     }
 
     private static void registrarClient() throws IOException {
-        String nom = nomClient();
         String nif = ask.askNif("Digam el nif del client a registrar: ");
-        String direccio = ask.askString("Digam la localització per les seves entregues: ");
-        String numero = numeroTelefono();
-        Cliente myCliente = new Cliente(nom, nif, direccio, numero);
-        clientes.add(myCliente);
-        fix.writerCliente(myCliente);
-        return;
+        if (clientes.contains(new Cliente(nif))) {
+            System.out.println("Este nif ya estaba registrado. ");
+        } else {
+            String nom = ask.askNif("Dime el nombre del cliente: ");
+            String direccio = ask.askString("Digam la localització per les seves entregues: ");
+            int numero = ask.askInt("Dime el numero de telefono: ", "Numero no valido. ", 100000000, 999999999);
+            Cliente myCliente = new Cliente(nif, nom, direccio, numero);
+            clientes.add(myCliente);
+            fix.writerCliente(myCliente);
+        }
     }
 
     private static void cambiarPrecio() throws IOException {
@@ -101,43 +129,12 @@ public class FACTS {
                 total += 1;
             }
         }
-        if (total <1){
+        if (total < 1) {
             System.out.println("No hay ningun producte con ese nombre");
         }
         fix.ReescribirProducte(productes);
     }
 
-    private static String numeroTelefono() {
-        String numero = pedirNumero();
-        System.out.println("El número de 9 dígitos ingresado es: " + numero);
-        return numero;
-    }
-
-    public static String pedirNumero() {
-        Scanner scanner = new Scanner(System.in);
-        String numero = ask.askString("Dime numero de telefono: ");
-        while (numero.length() != 9) {
-            System.out.print("Por favor, introduce un número de 9 dígitos: ");
-            numero = scanner.nextLine();
-        }
-        return numero;
-
-    }
-
-    private static String nomClient() {
-        String nombre;
-        boolean encontrado;
-        do {
-            System.out.println("Digam el nom del client que hi ha que registrar: ");
-            nombre = scanner.nextLine();
-            encontrado = (elegirObjeto(nombre));
-            if (encontrado) {
-                System.out.println("El client que has posat esta registrat, intenta-ho amb un altre.");
-            }
-        } while (encontrado);
-        System.out.println("El client " + nombre + " ha sigut registrat.");
-        return nombre;
-    }
 
     private static boolean elegirObjeto(String nombreProducto) {
         for (Producte i : productes) {

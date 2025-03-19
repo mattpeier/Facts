@@ -1,3 +1,1 @@
-camisetasimple/300.0
-camisetasimple/300.0
-fundademóvil/50.0
+1/camisetaSimple/12.0

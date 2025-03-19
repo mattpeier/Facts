@@ -13,14 +13,19 @@ public class Cliente {
     private String nom;
     private String nif;
     private String direccio;
-    private String numero;
+    private int numero;
 
-    public Cliente(String nom, String nif, String direccio, String numero) {
-        this.nom = nom;
-        this.nif = nif;
+    public Cliente(String nif, String nom, String direccio, int numero) {
+        this.nom = nif;
+        this.nif = nom;
         this.direccio = direccio;
         this.numero = numero;
     }
+
+    public Cliente(String nif) {
+        this.nif = nif;
+    }
+    
 
     public String getNom() {
         return nom;
@@ -34,7 +39,7 @@ public class Cliente {
         return direccio;
     }
 
-    public String getNumero() {
+    public int getNumero() {
         return numero;
     }
 
@@ -50,9 +55,13 @@ public class Cliente {
         this.direccio = direccio;
     }
 
-    public void setNumero(String numero) {
+    public void setNumero(int numero) {
         this.numero = numero;
     }
-    
+        @Override
+    public boolean equals(Object obj) {
+        Cliente c = (Cliente) obj;
+        return this.nif.equalsIgnoreCase(c.getNif());
+    }
     
 }

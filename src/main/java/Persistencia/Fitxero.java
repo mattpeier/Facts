@@ -51,7 +51,7 @@ public class Fitxero {
 
     public void writerProducteInFile(Producte myProducte) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(pathFileProducte, true));
-        writer.write(myProducte.getProducto() + "/" + myProducte.getPrecio());
+        writer.write(myProducte.getCodigo() + "/" + myProducte.getProducto() + "/" + myProducte.getPrecio());
         writer.newLine();
         writer.close();
     }
@@ -62,16 +62,17 @@ public class Fitxero {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] data = line.split("/");
-            String producto = data[0];
-            double precio = Double.parseDouble(data[1]);
-            productes.add(new Producte(producto, precio));
+            int codigo = Integer.parseInt(data[0]);
+            String producto = data[1];
+            double precio = Double.parseDouble(data[2]);
+            productes.add(new Producte(codigo, producto, precio));
         }
         return productes;
     }
 
     public void writerCliente(Cliente myCliente) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(pathFileCliente, true));
-        writer.write(myCliente.getNom() + "/" + myCliente.getNif() + "/" + myCliente.getDireccio() + "/" + myCliente.getNumero());
+        writer.write(myCliente.getNif() + "/" + myCliente.getNom() + "/" + myCliente.getDireccio() + "/" + myCliente.getNumero());
         writer.newLine();
         writer.close();
     }
@@ -82,11 +83,11 @@ public class Fitxero {
         String line;
         while ((line = reader.readLine()) != null) {
             String[] data = line.split("/");
-            String nom = data[0];
-            String nif = data[1];
+            String nif = data[0];
+            String nom = data[1];
             String direccio = data[2];
-            String numero = data[3];
-            clientes.add(new Cliente(nom, nif, direccio, numero));
+            int numero = Integer.parseInt(data[3]);
+            clientes.add(new Cliente(nif, nom, direccio, numero));
         }
         return clientes;
     }
@@ -95,7 +96,7 @@ public class Fitxero {
         BufferedWriter writer = new BufferedWriter(new FileWriter(pathFileProducte, false));
         for (Producte p : productes) {
             writerProducteInFile(p);
-        }
+        } 
         writer.close();
     }
 }
