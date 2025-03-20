@@ -25,7 +25,7 @@ public class FACTS {
     public static Fitxero fix;
 
     public static void main(String[] args) throws IOException {
-
+        System.out.println("");
         ask = new AskData();
         productes = new ArrayList<>();
         serveis = new ArrayList<>();
