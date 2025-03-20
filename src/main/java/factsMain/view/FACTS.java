@@ -84,7 +84,6 @@ public class FACTS {
         System.out.println("9. ***En proceso***.");
         System.out.println("10. Sortir");
         System.out.println("-------------------------------");
-        System.out.println("-------------------------------");
 
     }
 
