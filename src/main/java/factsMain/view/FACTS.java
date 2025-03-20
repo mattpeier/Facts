@@ -71,6 +71,7 @@ public class FACTS {
         } while (opcion != 10);
 
     }
+
     private static void menuFack() {
         System.out.println("-------- Estampats Myck -------");
         System.out.println("1. Registrar un nou producte.");
@@ -84,27 +85,27 @@ public class FACTS {
         System.out.println("9. ***En proceso***.");
         System.out.println("10. Sortir");
         System.out.println("-------------------------------");
+        System.out.println("-------------------------------");
 
     }
 
     private static void registraProducto() throws IOException {
         int codigo = ask.askInt("insereix el codi del producte: ", "Aquest codi no es valid.", 1, 10000);
-        if(productes.contains(new Producte(codigo))) {
+        if (productes.contains(new Producte(codigo))) {
             System.out.println("Aquest codi ja esta utiliztat. ");
-        } else  {
+        } else {
             System.out.println("PRODUCTOS VALIDOS: \n"
                     + "CAMISETASIMPLE\n"
                     + "BOSSADETELA\n"
                     + "FUNDADEMÓVIL\n"
                     + "FUNDADETABLET");
-        String producto = ask.askProducto("Que producte registaras avuí? : ", "El prodcuto que quieres registrar no concuerda con nuestros datos, intenta-ho.", "CamisetaSimple", "Bossadetela", "Fundademóvil", "Fundadetablet");
-        double precio = ask.askDouble("Ingresa el preu de tu producte: ", "Ingresa el preu correctamente", 0);
-        Producte myProducte = new Producte(codigo, producto, precio);
-        productes.add(myProducte);
-        fix.writerProducteInFile(myProducte);
+            String producto = ask.askProducto("Que producte registaras avuí? : ", "El prodcuto que quieres registrar no concuerda con nuestros datos, intenta-ho.", "CamisetaSimple", "Bossadetela", "Fundademóvil", "Fundadetablet");
+            double precio = ask.askDouble("Ingresa el preu de tu producte: ", "Ingresa el preu correctamente", 0);
+            Producte myProducte = new Producte(codigo, producto, precio);
+            productes.add(myProducte);
+            fix.writerProducteInFile(myProducte);
         }
     }
-    
 
     private static void registrarClient() throws IOException {
         String nif = ask.askNif("Digam el nif del client a registrar: ");
@@ -135,7 +136,6 @@ public class FACTS {
         }
         fix.ReescribirProducte(productes);
     }
-
 
     private static boolean elegirObjeto(String nombreProducto) {
         for (Producte i : productes) {
