@@ -34,7 +34,7 @@ public class menuDigital extends javax.swing.JFrame {
         registrarProducte = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        registreFacturacio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -113,10 +113,10 @@ public class menuDigital extends javax.swing.JFrame {
             }
         });
 
-        jButton6.setText("Registre de facturacio");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
+        registreFacturacio.setText("Registre de facturacio");
+        registreFacturacio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
+                registreFacturacioActionPerformed(evt);
             }
         });
 
@@ -135,7 +135,7 @@ public class menuDigital extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton6)
+                        .addComponent(registreFacturacio)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(213, 213, 213))
         );
@@ -148,7 +148,7 @@ public class menuDigital extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(registreFacturacio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
 
@@ -177,9 +177,12 @@ public class menuDigital extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+    private void registreFacturacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreFacturacioActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton6ActionPerformed
+        enProces pagina = new enProces();
+        pagina.setVisible(true);
+        
+    }//GEN-LAST:event_registreFacturacioActionPerformed
 
     /**
      * @param args the command line arguments
@@ -221,10 +224,10 @@ public class menuDigital extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JButton registrarProducte;
+    private javax.swing.JButton registreFacturacio;
     // End of variables declaration//GEN-END:variables
 }
