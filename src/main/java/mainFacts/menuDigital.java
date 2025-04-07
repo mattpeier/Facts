@@ -2,7 +2,14 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package factsInterfaz.view;
+package mainFacts;
+
+import factsView.enProces;
+import factsView.mostrarProductes;
+import factsModel.Producte;
+import factsView.registreProducte;
+import factsView.regitstrarClients;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -29,7 +36,7 @@ public class menuDigital extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jButton2 = new javax.swing.JButton();
+        registrarClients = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         registrarProducte = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -44,10 +51,10 @@ public class menuDigital extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Myanmar Text", 2, 24)); // NOI18N
         jLabel2.setText("Lo registramos por ti, lo facturamos por ti");
 
-        jButton2.setText("Registre clients ");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        registrarClients.setText("Registre clients ");
+        registrarClients.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                registrarClientsActionPerformed(evt);
             }
         });
 
@@ -75,7 +82,7 @@ public class menuDigital extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(registrarProducte)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(registrarClients, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton3))
                     .addGroup(jPanel1Layout.createSequentialGroup()
@@ -95,7 +102,7 @@ public class menuDigital extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(registrarClients, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(registrarProducte, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
@@ -154,34 +161,53 @@ public class menuDigital extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+   
+    //Se muestra el apartado de productos
     private void registrarProducteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarProducteActionPerformed
         // TODO add your handling code here:
-        registreProducte registrar = new registreProducte();
+        registreProducte registrar = new registreProducte(this, false);
         registrar.setVisible(true);
     }//GEN-LAST:event_registrarProducteActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+   
+    //Truca al aparatat de clients
+    private void registrarClientsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registrarClientsActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+        regitstrarClients registre = new regitstrarClients(this);
+        registre.setVisible(true);
+    }//GEN-LAST:event_registrarClientsActionPerformed
+    
+    //    //Aquest esta en espera y es mostrara una pantalla 
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
+        enProces pagina = new enProces(this);
+        pagina.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
-
+   
+    //Aquest esta en espera y es mostrara una pantalla 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
+        mostrarProductes mostra = new mostrarProductes(this, false);
+        mostra.setVisible(true);
+        
     }//GEN-LAST:event_jButton4ActionPerformed
+    
+    //Aquest esta en espera y es mostrara una pantalla 
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
+        enProces pagina = new enProces(this);
+        pagina.setVisible(true);
     }//GEN-LAST:event_jButton5ActionPerformed
+    
+    
+        //Aquest esta en espera y es mostrara una pantalla 
 
     private void registreFacturacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreFacturacioActionPerformed
         // TODO add your handling code here:
-        enProces pagina = new enProces();
+        enProces pagina = new enProces(this);
         pagina.setVisible(true);
-        
+
     }//GEN-LAST:event_registreFacturacioActionPerformed
 
     /**
@@ -220,14 +246,19 @@ public class menuDigital extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton registrarClients;
     private javax.swing.JButton registrarProducte;
     private javax.swing.JButton registreFacturacio;
     // End of variables declaration//GEN-END:variables
-}
+
+    
+
+    }
+    //dtm.addRow(new String[] {"1","2","3","4"});
+

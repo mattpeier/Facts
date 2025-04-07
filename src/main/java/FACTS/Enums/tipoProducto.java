@@ -28,3 +28,4 @@ public enum tipoProducto {
         }
     }
 }
+//Tenim els enums per poder revisar el numero de productes que hi ha

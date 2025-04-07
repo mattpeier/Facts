@@ -4,8 +4,8 @@
  */
 package Persistencia;
 
-import factsMain.Model.Cliente;
-import factsMain.Model.Producte;
+import factsModel.Cliente;
+import factsModel.Producte;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -41,7 +41,7 @@ public class Fitxero {
         if (!producte.exists()) {
             producte.createNewFile();
         }
-        
+
         File cliente = new File(pathFileCliente);
         if (!cliente.exists()) {
             cliente.createNewFile();
@@ -65,7 +65,9 @@ public class Fitxero {
             int codigo = Integer.parseInt(data[0]);
             String producto = data[1];
             double precio = Double.parseDouble(data[2]);
-            productes.add(new Producte(codigo, producto, precio));
+            String tematica = data[3];
+
+            productes.add(new Producte(codigo, producto, precio, tematica));
         }
         return productes;
     }
@@ -91,12 +93,12 @@ public class Fitxero {
         }
         return clientes;
     }
-    
-        public void ReescribirProducte(ArrayList<Producte> productes) throws IOException {
+
+    public void ReescribirProducte(ArrayList<Producte> productes) throws IOException {
         BufferedWriter writer = new BufferedWriter(new FileWriter(pathFileProducte, false));
         for (Producte p : productes) {
             writerProducteInFile(p);
-        } 
+        }
         writer.close();
     }
 }
