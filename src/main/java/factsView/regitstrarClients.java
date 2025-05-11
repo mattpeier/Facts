@@ -298,14 +298,12 @@ public class regitstrarClients extends javax.swing.JFrame {
                         return;
                     }
                 }
-
                 Cliente nouClient = new Cliente(nif, nom, direccio, numero);
 
                 if (clients.containsKey(nouClient.getNif())) {
                     JOptionPane.showMessageDialog(this, "Ja existeix un client amb aquest NIF", "Error", JOptionPane.ERROR_MESSAGE);
                     return;
                 }
-
                 clients.put(nouClient.getNif(), nouClient);
                 fitxer.writerCliente(nouClient);
 

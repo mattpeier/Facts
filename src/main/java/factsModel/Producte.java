@@ -13,6 +13,7 @@ import java.util.HashMap;
 public class Producte {
 
     private static HashMap<String, Producte> productes = new HashMap<>();
+
     public static HashMap<String, Producte> getProductes() {
         return productes;
     }
@@ -21,6 +22,7 @@ public class Producte {
     private String producto;
     private double precio;
     private String tematica;
+    private Cliente cliente;
 
     public Producte(int codigo, String producto, double precio, String tematica) {
 
@@ -28,6 +30,7 @@ public class Producte {
         this.producto = producto;
         this.precio = precio;
         this.tematica = tematica;
+        this.cliente = cliente;
 
     }
 
@@ -36,13 +39,15 @@ public class Producte {
         this.producto = producto;
         this.precio = precio;
         this.tematica = tematica;
+        this.cliente = cliente;
 
     }
 
-    public Producte(int codigo, String producto) {
+    public Producte(int codigo, String producto, Cliente cliente) {
         this.codigo = codigo;
         this.producto = producto;
         this.precio = precio;
+        this.cliente = cliente;
 
     }
 
@@ -88,6 +93,14 @@ public class Producte {
         return tematica;
     }
 
+    public Cliente getCliente() {
+        return cliente;
+    }
+
+    public void setCliente(Cliente cliente) {
+        this.cliente = cliente;
+    }
+
     public void setCodigo(int codigo) {
         this.codigo = codigo;
     }
@@ -104,4 +117,5 @@ public class Producte {
         this.tematica = tematica;
 
     }
+
 }

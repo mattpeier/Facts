@@ -4,8 +4,10 @@
  */
 package controladorRegistro;
 
+import DAO.DAO_persistencia;
 import factsModel.Cliente;
 import factsModel.Producte;
+import java.sql.SQLException;
 import mainFacts.menuDigital;
 import java.util.HashMap;
 import java.util.Map;
@@ -19,9 +21,11 @@ public class Controlador {
     private static Controlador controller;
     private  Map<Integer, Producte> productes;
     private static HashMap<String, Cliente> clients;
+    private static DAO_persistencia dao;
     
     private Controlador() {
         this.productes= new HashMap<Integer,Producte>();
+        dao = new DAO_persistencia();
     }
     
 //Aqui podem instanciar el controlador i initsialitsarlo amb les altres clase
@@ -36,13 +40,10 @@ public class Controlador {
         return productes;
     }
     
-    
-
     public boolean comprobarCodi(int codigo) {
         return codigo >= 10000 && codigo <= 99999;
-
+        
     }
-
     public void addProduct(Producte producte) {
         productes.put(producte.getCodigo(), producte);
     }
@@ -50,6 +51,19 @@ public class Controlador {
 
     public boolean checkEnableAccept(int codigo) {
         throw new UnsupportedOperationException(); 
+    }
+    
+    public void addCliente(Cliente Cliente) throws SQLException, FactsException {
+        if (dao.existCliente(Cliente)) {
+            throw new FactsException("Ya existe un cliente con este nif.");
+        }
+        dao.insertCliente(Cliente);
+    }
+    public void addProducte (Producte Producte) throws SQLException, FactsException {
+        if (dao.existProducte(Producte)) {
+           throw new FactsException("Ya existe este producto con este codigo."); 
+        }
+        dao.insertProducte(Producte);
     }
 
 }
