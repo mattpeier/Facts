@@ -13,9 +13,9 @@ public class Cliente {
     private String nif;
     private String nom;
     private String direccio;
-    private int numero;
+    private String numero;
 
-    public Cliente(String nom, String direccio, String direccio1, int numero) {
+    public Cliente(String nom, String direccio, String direccio1, String numero) {
         this.nom = nif;
         this.nif = nom;
         this.direccio = direccio;
@@ -38,7 +38,7 @@ public class Cliente {
         return direccio;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -54,7 +54,7 @@ public class Cliente {
         this.direccio = direccio;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
 

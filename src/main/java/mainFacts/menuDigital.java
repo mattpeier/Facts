@@ -9,6 +9,7 @@ import factsView.mostrarProductes;
 import factsModel.Producte;
 import factsView.registreProducte;
 import factsView.regitstrarClients;
+import factsView.seleccionaCodi;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,10 +38,10 @@ public class menuDigital extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         registrarClients = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        canviPreu = new javax.swing.JButton();
         registrarProducte = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        mostrarProd = new javax.swing.JButton();
+        mostrarClie = new javax.swing.JButton();
         registreFacturacio = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -58,10 +59,10 @@ public class menuDigital extends javax.swing.JFrame {
             }
         });
 
-        jButton3.setText("Canvi de preu a producte");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        canviPreu.setText("Canvi de preu a producte");
+        canviPreu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                canviPreuActionPerformed(evt);
             }
         });
 
@@ -84,7 +85,7 @@ public class menuDigital extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(registrarClients, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton3))
+                        .addComponent(canviPreu))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 458, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))
@@ -100,23 +101,23 @@ public class menuDigital extends javax.swing.JFrame {
                 .addComponent(jLabel2)
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(canviPreu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(registrarClients, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(registrarProducte, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))))
         );
 
-        jButton4.setText("Mostrar productes");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
+        mostrarProd.setText("Mostrar productes");
+        mostrarProd.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
+                mostrarProdActionPerformed(evt);
             }
         });
 
-        jButton5.setText("Mostrar clients");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
+        mostrarClie.setText("Mostrar clients");
+        mostrarClie.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                mostrarClieActionPerformed(evt);
             }
         });
 
@@ -138,9 +139,9 @@ public class menuDigital extends javax.swing.JFrame {
                         .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(129, 129, 129)
-                        .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mostrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(mostrarClie, javax.swing.GroupLayout.PREFERRED_SIZE, 123, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(registreFacturacio)
                         .addGap(0, 0, Short.MAX_VALUE)))
@@ -153,8 +154,8 @@ public class menuDigital extends javax.swing.JFrame {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(27, 27, 27)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostrarProd, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mostrarClie, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(registreFacturacio, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
@@ -178,27 +179,27 @@ public class menuDigital extends javax.swing.JFrame {
     
     //    //Aquest esta en espera y es mostrara una pantalla 
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    private void canviPreuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_canviPreuActionPerformed
         // TODO add your handling code here:
-        enProces pagina = new enProces(this);
+        seleccionaCodi pagina = new seleccionaCodi(this, false);
         pagina.setVisible(true);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    }//GEN-LAST:event_canviPreuActionPerformed
    
     //Aquest esta en espera y es mostrara una pantalla 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+    private void mostrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarProdActionPerformed
         // TODO add your handling code here:
         mostrarProductes mostra = new mostrarProductes(this, false);
         mostra.setVisible(true);
         
-    }//GEN-LAST:event_jButton4ActionPerformed
+    }//GEN-LAST:event_mostrarProdActionPerformed
     
     //Aquest esta en espera y es mostrara una pantalla 
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+    private void mostrarClieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarClieActionPerformed
         // TODO add your handling code here:
         enProces pagina = new enProces(this);
         pagina.setVisible(true);
-    }//GEN-LAST:event_jButton5ActionPerformed
+    }//GEN-LAST:event_mostrarClieActionPerformed
     
     
         //Aquest esta en espera y es mostrara una pantalla 
@@ -246,12 +247,12 @@ public class menuDigital extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton canviPreu;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JButton mostrarClie;
+    private javax.swing.JButton mostrarProd;
     private javax.swing.JButton registrarClients;
     private javax.swing.JButton registrarProducte;
     private javax.swing.JButton registreFacturacio;

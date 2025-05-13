@@ -19,15 +19,18 @@ import java.util.Map;
 public class Controlador {
 
     private static Controlador controller;
-    private  Map<Integer, Producte> productes;
-    private static HashMap<String, Cliente> clients;
+    private Map<Integer, Producte> productes;
+    private Map<Integer, Cliente> clientes;
+
+    // private static HashMap<String, Cliente> clients;
     private static DAO_persistencia dao;
-    
+
     private Controlador() {
-        this.productes= new HashMap<Integer,Producte>();
+        this.productes = new HashMap<Integer, Producte>();
+        this.clientes = new HashMap<Integer, Cliente>();
         dao = new DAO_persistencia();
     }
-    
+
 //Aqui podem instanciar el controlador i initsialitsarlo amb les altres clase
     public static Controlador getInstance() {
         if (controller == null) {
@@ -36,34 +39,55 @@ public class Controlador {
         return controller;
     }
 
-    public  Map<Integer, Producte> getProductes() {
+    public Map<Integer, Producte> getProductes() {
         return productes;
     }
     
+    public Map<Integer, Cliente> getClientes() {
+        return clientes;
+    }
+
     public boolean comprobarCodi(int codigo) {
         return codigo >= 10000 && codigo <= 99999;
-        
+
     }
+
     public void addProduct(Producte producte) {
         productes.put(producte.getCodigo(), producte);
     }
 
-
     public boolean checkEnableAccept(int codigo) {
-        throw new UnsupportedOperationException(); 
+        throw new UnsupportedOperationException();
     }
-    
+
     public void addCliente(Cliente Cliente) throws SQLException, FactsException {
         if (dao.existCliente(Cliente)) {
             throw new FactsException("Ya existe un cliente con este nif.");
         }
         dao.insertCliente(Cliente);
     }
-    public void addProducte (Producte Producte) throws SQLException, FactsException {
+
+    public void addProducte(Producte Producte) throws SQLException, FactsException {
         if (dao.existProducte(Producte)) {
-           throw new FactsException("Ya existe este producto con este codigo."); 
+            throw new FactsException("Ya existe este producto con este codigo.");
         }
         dao.insertProducte(Producte);
+    }
+
+    public boolean existProducte(int num) throws SQLException, FactsException {
+        if (dao.codiDevuelve(num)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+    public void cambiarPrecio(int codigo, double precioNuevo) {
+        Producte p = productes.get(codigo);
+        if (p != null) {
+            p.setPrecio(precioNuevo);
+        }
     }
 
 }

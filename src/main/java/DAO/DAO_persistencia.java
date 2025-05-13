@@ -13,23 +13,32 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  *
  * @author hp
  */
 public class DAO_persistencia {
-    
+
+    public void modificarProd(Producte Producte) throws SQLException {
+        Connection c = conectar();
+        String query = "UPDATE Producte set preu = ? WHERE preu = '" + Producte.getPrecio() + "';";
+        PreparedStatement ps = c.prepareStatement(query);
+        ps.setDouble(1, Producte.getPrecio());
+        ps.executeUpdate();
+        ps.close();
+        desconectar(c);
+
+    }
+
     public void insertCliente(Cliente Cliente) throws SQLException {
         Connection c = conectar();
         PreparedStatement ps = c.prepareStatement("insert into cliente values (?,?,?,?);");
         ps.setString(1, Cliente.getNif());
         ps.setString(2, Cliente.getNom());
         ps.setString(3, Cliente.getDireccio());
-        ps.setInt(4, Cliente.getNumero());
+        ps.setString(4, Cliente.getNumero());
         ps.executeUpdate();
         ps.close();
         desconectar(c);
@@ -42,7 +51,7 @@ public class DAO_persistencia {
         boolean existe = rs.next();
         rs.close();
         desconectar(c);
-        
+
         return existe;
     }
     public List<Cliente> selectAllCliente() throws SQLException {
@@ -54,7 +63,7 @@ public class DAO_persistencia {
             String nif = rs.getString("nif");
             String nom = rs.getString("nom");
             String direccio = rs.getString("direccio");
-            int numero = rs.getInt("numero");
+            String numero = rs.getString("numero");
             Cliente cliente = new Cliente(nif, nom, direccio, numero);
             clientes.add(cliente);
             rs.close();
@@ -62,10 +71,10 @@ public class DAO_persistencia {
         }
         return clientes;
     }
-
+    
     public void insertProducte(Producte producte) throws SQLException {
         Connection prod = conectar();
-        PreparedStatement ps = prod.prepareStatement("insert into Producte values (?,?,?,?,?);");
+        PreparedStatement ps = prod.prepareStatement("insert into producte values (?,?,?,?,?);");
         ps.setInt(1, producte.getCodigo());
         ps.setString(2, producte.getProducto());
         ps.setString(3, producte.getTematica());
@@ -79,19 +88,17 @@ public class DAO_persistencia {
         ps.close();
         desconectar(prod);
     }
-
     public boolean existProducte(Producte producte) throws SQLException {
         Connection prod = conectar();
         Statement st = prod.createStatement();
-        ResultSet rs = st.executeQuery("seelct * from prodcute where codi = '" + producte.getCodigo() + "';");
+        ResultSet rs = st.executeQuery("select * from producte where codi = '" + producte.getCodigo() + "';");
         boolean existe = rs.next();
         rs.close();
+        desconectar(prod);
         return existe;
-
     }
-
     private Connection conectar() throws SQLException {
-        String url = "jbdc:mysql://localhost:3306/registreFacts";
+        String url = "jdbc:mysql://localhost:3306/registrefacts";
         String user = "root";
         String pass = "root";
         Connection c = DriverManager.getConnection(url, user, pass);
@@ -100,7 +107,15 @@ public class DAO_persistencia {
 
     private void desconectar(Connection c) throws SQLException {
         c.close();
+    }
+    public boolean codiDevuelve(int nuevo) throws SQLException {
+        Connection c = conectar();
+        Statement st = c.createStatement();
+        ResultSet rs = st.executeQuery("select * from producte where codi = '" + nuevo + "';");
+        boolean existe = rs.next();
+        rs.close();
+        desconectar(c);
+        return existe;
 
     }
-
 }

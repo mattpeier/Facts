@@ -174,7 +174,7 @@ public class registreProducte extends javax.swing.JFrame {
 
         Producte p = new Producte(codigo, producto, precio, tematica);
         if (productes.containsKey((int) jSpinner2.getValue())) {
-            JOptionPane.showMessageDialog(this, "ERROR: YA EXISTE", "Error: este codigo ya esta asignado a otro producto.", HEIGHT);
+            JOptionPane.showMessageDialog(this, "ERROR: Aquest CODI ya esta asgnat a un producte.", "Error: YA EXISTE.", HEIGHT);
         } else {
             controller.addProduct(p);
             dispose();
@@ -206,7 +206,7 @@ public class registreProducte extends javax.swing.JFrame {
         if ((jTextPane3.getText().length() > 1) && (jComboBox1.getSelectedIndex() > 0)) {
             aceptar.setEnabled(true);
         } else {
-            aceptar.setEnabled(true);
+            aceptar.setEnabled(false);
         }
     }
 
