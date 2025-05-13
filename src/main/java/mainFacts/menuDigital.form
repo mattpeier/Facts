@@ -31,9 +31,9 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="129" max="-2" attributes="0"/>
-                      <Component id="jButton4" min="-2" pref="136" max="-2" attributes="0"/>
+                      <Component id="mostrarProd" min="-2" pref="136" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" pref="123" max="-2" attributes="0"/>
+                      <Component id="mostrarClie" min="-2" pref="123" max="-2" attributes="0"/>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="registreFacturacio" min="-2" max="-2" attributes="0"/>
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
@@ -50,8 +50,8 @@
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
               <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="jButton4" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
-                  <Component id="jButton5" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="mostrarProd" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
+                  <Component id="mostrarClie" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
                   <Component id="registreFacturacio" alignment="3" min="-2" pref="50" max="-2" attributes="0"/>
               </Group>
               <EmptySpace pref="27" max="32767" attributes="0"/>
@@ -73,7 +73,7 @@
                           <EmptySpace max="32767" attributes="0"/>
                           <Component id="registrarClients" min="-2" pref="120" max="-2" attributes="0"/>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
-                          <Component id="jButton3" min="-2" max="-2" attributes="0"/>
+                          <Component id="canviPreu" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Component id="jLabel2" min="-2" pref="458" max="-2" attributes="0"/>
@@ -94,7 +94,7 @@
                   <Component id="jLabel2" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="39" pref="39" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="jButton3" max="32767" attributes="0"/>
+                      <Component id="canviPreu" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="registrarClients" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
                           <Component id="registrarProducte" alignment="3" min="-2" pref="54" max="-2" attributes="0"/>
@@ -129,12 +129,12 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="registrarClientsActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="canviPreu">
           <Properties>
             <Property name="text" type="java.lang.String" value="Canvi de preu a producte"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="canviPreuActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JButton" name="registrarProducte">
@@ -147,20 +147,20 @@
         </Component>
       </SubComponents>
     </Container>
-    <Component class="javax.swing.JButton" name="jButton4">
+    <Component class="javax.swing.JButton" name="mostrarProd">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar productes"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton4ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrarProdActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
+    <Component class="javax.swing.JButton" name="mostrarClie">
       <Properties>
         <Property name="text" type="java.lang.String" value="Mostrar clients"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="mostrarClieActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="registreFacturacio">

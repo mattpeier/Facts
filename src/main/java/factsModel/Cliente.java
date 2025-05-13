@@ -9,13 +9,13 @@ package factsModel;
  * @author hp
  */
 public class Cliente {
-    
-    private String nom;
-    private String nif;
-    private String direccio;
-    private int numero;
 
-    public Cliente(String nif, String nom, String direccio, int numero) {
+    private String nif;
+    private String nom;
+    private String direccio;
+    private String numero;
+
+    public Cliente(String nom, String direccio, String direccio1, String numero) {
         this.nom = nif;
         this.nif = nom;
         this.direccio = direccio;
@@ -25,7 +25,6 @@ public class Cliente {
     public Cliente(String nif) {
         this.nif = nif;
     }
-    
 
     public String getNom() {
         return nom;
@@ -39,7 +38,7 @@ public class Cliente {
         return direccio;
     }
 
-    public int getNumero() {
+    public String getNumero() {
         return numero;
     }
 
@@ -55,13 +54,14 @@ public class Cliente {
         this.direccio = direccio;
     }
 
-    public void setNumero(int numero) {
+    public void setNumero(String numero) {
         this.numero = numero;
     }
-        @Override
+
+    @Override
     public boolean equals(Object obj) {
         Cliente c = (Cliente) obj;
         return this.nif.equalsIgnoreCase(c.getNif());
     }
-    
+
 }

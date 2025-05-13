@@ -88,7 +88,7 @@ public class Fitxero {
             String nif = data[0];
             String nom = data[1];
             String direccio = data[2];
-            int numero = Integer.parseInt(data[3]);
+            String numero = data[3];
             clientes.add(new Cliente(nif, nom, direccio, numero));
         }
         return clientes;

@@ -6,9 +6,15 @@ package factsView;
 
 import mainFacts.menuDigital;
 import Persistencia.Fitxero;
+import controladorRegistro.Controlador;
+import controladorRegistro.FactsException;
 import factsModel.Cliente;
+import factsModel.Producte;
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 /**
@@ -17,11 +23,19 @@ import javax.swing.JOptionPane;
  */
 public class regitstrarClients extends javax.swing.JFrame {
 
+    private menuDigital menuDigital;
+    private registreProducte estaVentana;
+    private Controlador controller;
+    private HashMap<Integer, Cliente> clientes;
+
     /**
      * Creates new form regitstrarClients
      */
     public regitstrarClients(menuDigital aThis) {
         initComponents();
+        controller = Controlador.getInstance();
+        clientes = (HashMap<Integer, Cliente>) Controlador.getInstance().getClientes();
+
     }
 
     /**
@@ -38,10 +52,12 @@ public class regitstrarClients extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
+        jTextNif = new javax.swing.JTextField();
+        jTextNom = new javax.swing.JTextField();
+        jTextDireccio = new javax.swing.JTextField();
+        jTextNum = new javax.swing.JTextField();
+        Registrar = new javax.swing.JButton();
+        Darrere = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -53,9 +69,23 @@ public class regitstrarClients extends javax.swing.JFrame {
 
         jLabel8.setText("Número de telèfon:");
 
-        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+        jTextNum.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField4ActionPerformed(evt);
+                jTextNumActionPerformed(evt);
+            }
+        });
+
+        Registrar.setText("Registrar");
+        Registrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistrarActionPerformed(evt);
+            }
+        });
+
+        Darrere.setText("Darrere");
+        Darrere.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DarrereActionPerformed(evt);
             }
         });
 
@@ -66,18 +96,24 @@ public class regitstrarClients extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(jTextField3)
-                        .addComponent(jTextField2)
-                        .addComponent(jTextField1, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)))
-                .addGap(75, 75, 75))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(Darrere, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Registrar, javax.swing.GroupLayout.PREFERRED_SIZE, 131, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(22, 22, 22))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTextNum, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE)
+                            .addComponent(jTextDireccio)
+                            .addComponent(jTextNom)
+                            .addComponent(jTextNif, javax.swing.GroupLayout.DEFAULT_SIZE, 140, Short.MAX_VALUE))
+                        .addGap(75, 75, 75))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,20 +121,24 @@ public class regitstrarClients extends javax.swing.JFrame {
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNif, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextNom, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTextDireccio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(94, Short.MAX_VALUE))
+                    .addComponent(jTextNum, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(Registrar)
+                    .addComponent(Darrere))
+                .addContainerGap(38, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -121,243 +161,95 @@ public class regitstrarClients extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+    private void jTextNumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextNumActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField4ActionPerformed
+    }//GEN-LAST:event_jTextNumActionPerformed
+
+    private void RegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistrarActionPerformed
+        // TODO add your handling code here:
+        String nif = jTextNif.getText();
+        String nom = jTextNom.getText();
+        String direccio = jTextDireccio.getText();
+        String numero = jTextNum.getText();
+
+        Cliente c = new Cliente(nif, nom, direccio, numero);
+        if (clientes.equals((String) jTextNif.getText())) {
+            JOptionPane.showMessageDialog(this, "ERROR: Aquest NIF ja esta asignat a un client.", "Error: YA EXISTE.", HEIGHT);
+        } else {
+            try {
+                controller.addCliente(c);
+            } catch (SQLException ex) {
+                Logger.getLogger(regitstrarClients.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (FactsException ex) {
+                Logger.getLogger(regitstrarClients.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            dispose();
+        }
+
+    }//GEN-LAST:event_RegistrarActionPerformed
+
+    private void DarrereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DarrereActionPerformed
+        // TODO add your handling code here:
+        dispose();
+    }//GEN-LAST:event_DarrereActionPerformed
 
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-            }
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException ex) {
+//            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (InstantiationException ex) {
+//            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (IllegalAccessException ex) {
+//            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(regitstrarClients.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//            }
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Darrere;
+    private javax.swing.JButton Registrar;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JTextField jTextDireccio;
+    private javax.swing.JTextField jTextNif;
+    private javax.swing.JTextField jTextNom;
+    private javax.swing.JTextField jTextNum;
     // End of variables declaration//GEN-END:variables
-    public class GestioClientsGUI extends javax.swing.JFrame {
-
-        private static HashMap<String, Cliente> clients;
-        private Fitxero fitxer;
-
-        public GestioClientsGUI(HashMap<String, Cliente> clients, Fitxero fitxer) {
-            this.clients = clients;
-            this.fitxer = fitxer;
-            initComponents();
-            setLocationRelativeTo(null);
-        }
-
-        @SuppressWarnings("unchecked")
-        // <editor-fold defaultstate="collapsed" desc="Generated Code">                          
-        private void initComponents() {
-            panellRegistre = new javax.swing.JPanel();
-            jLabel1 = new javax.swing.JLabel();
-            campNIF = new javax.swing.JTextField();
-            jLabel2 = new javax.swing.JLabel();
-            campNom = new javax.swing.JTextField();
-            jLabel3 = new javax.swing.JLabel();
-            campDireccio = new javax.swing.JTextField();
-            jLabel4 = new javax.swing.JLabel();
-            campNumero = new javax.swing.JTextField();
-            botoRegistrar = new javax.swing.JButton();
-            botoNetejar = new javax.swing.JButton();
-            panellConsulta = new javax.swing.JPanel();
-            jScrollPane1 = new javax.swing.JScrollPane();
-            areaConsulta = new javax.swing.JTextArea();
-            botoConsultar = new javax.swing.JButton();
-
-            setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-            setTitle("Gestió de Clients - FACTS");
-
-            panellRegistre.setBorder(javax.swing.BorderFactory.createTitledBorder("Registre de Clients"));
-            panellRegistre.setLayout(new java.awt.GridLayout(5, 2, 5, 5));
-
-            jLabel1.setText("NIF:");
-            panellRegistre.add(jLabel1);
-            panellRegistre.add(campNIF);
-
-            jLabel2.setText("Nom:");
-            panellRegistre.add(jLabel2);
-            panellRegistre.add(campNom);
-
-            jLabel3.setText("Direcció:");
-            panellRegistre.add(jLabel3);
-            panellRegistre.add(campDireccio);
-
-            jLabel4.setText("Número de telèfon:");
-            panellRegistre.add(jLabel4);
-            panellRegistre.add(campNumero);
-
-            botoRegistrar.setText("Registrar Client");
-            botoRegistrar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botoRegistrarActionPerformed(evt);
-                }
-            });
-            panellRegistre.add(botoRegistrar);
-
-            botoNetejar.setText("Netejar Camps");
-            botoNetejar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botoNetejarActionPerformed(evt);
-                }
-            });
-            panellRegistre.add(botoNetejar);
-
-            getContentPane().add(panellRegistre, java.awt.BorderLayout.NORTH);
-
-            panellConsulta.setBorder(javax.swing.BorderFactory.createTitledBorder("Consulta de Clients"));
-            panellConsulta.setLayout(new java.awt.BorderLayout());
-
-            areaConsulta.setColumns(20);
-            areaConsulta.setFont(new java.awt.Font("Monospaced", 0, 12));
-            areaConsulta.setRows(5);
-            areaConsulta.setEditable(false);
-            jScrollPane1.setViewportView(areaConsulta);
-
-            panellConsulta.add(jScrollPane1, java.awt.BorderLayout.CENTER);
-
-            botoConsultar.setText("Consultar Tots els Clients");
-            botoConsultar.addActionListener(new java.awt.event.ActionListener() {
-                public void actionPerformed(java.awt.event.ActionEvent evt) {
-                    botoConsultarActionPerformed(evt);
-                }
-            });
-            panellConsulta.add(botoConsultar, java.awt.BorderLayout.SOUTH);
-
-            getContentPane().add(panellConsulta, java.awt.BorderLayout.CENTER);
-
-            pack();
-        }// </editor-fold>                        
-//Per poder entrar al registre
-        private void botoRegistrarActionPerformed(java.awt.event.ActionEvent evt) {
-            registrarClient();
-        }
-// Els esborra
-        private void botoNetejarActionPerformed(java.awt.event.ActionEvent evt) {
-            netejarCamps();
-        }
-
-        private void botoConsultarActionPerformed(java.awt.event.ActionEvent evt) {
-            consultarClients();
-        }
-//Apartat per poder registrar els clients
-        private void registrarClient() {
-            try {
-                String nif = campNIF.getText().trim();
-                String nom = campNom.getText().trim();
-                String direccio = campDireccio.getText().trim();
-                String numeroText = campNumero.getText().trim();
-
-                if (nif.isEmpty() || nom.isEmpty()) {
-                    JOptionPane.showMessageDialog(this, "Els camps NIF i Nom són obligatoris", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                int numero = 0;
-                if (!numeroText.isEmpty()) {
-                    try {
-                        numero = Integer.parseInt(numeroText);
-                    } catch (NumberFormatException e) {
-                        JOptionPane.showMessageDialog(this, "El número de telèfon ha de ser un valor numèric", "Error", JOptionPane.ERROR_MESSAGE);
-                        return;
-                    }
-                }
-
-                Cliente nouClient = new Cliente(nif, nom, direccio, numero);
-
-                if (clients.containsKey(nouClient.getNif())) {
-                    JOptionPane.showMessageDialog(this, "Ja existeix un client amb aquest NIF", "Error", JOptionPane.ERROR_MESSAGE);
-                    return;
-                }
-
-                clients.put(nouClient.getNif(), nouClient);
-                fitxer.writerCliente(nouClient);
-
-                JOptionPane.showMessageDialog(this, "Client registrat amb èxit", "Èxit", JOptionPane.INFORMATION_MESSAGE);
-                netejarCamps();
-
-            } catch (IOException e) {
-                JOptionPane.showMessageDialog(this, "Error en desar el client al fitxer: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            } catch (Exception e) {
-                JOptionPane.showMessageDialog(this, "Error en registrar el client: " + e.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
-            }
-        }
-//per verificar els clients
-        private void consultarClients() {
-            if (clients.isEmpty()) {
-                areaConsulta.setText("No hi ha clients registrats.");
-                return;
-            }
-
-            StringBuilder sb = new StringBuilder();
-            sb.append(String.format("%-15s %-20s %-30s %-15s\n", "NIF", "NOM", "DIRECCIÓ", "TELÈFON"));
-            sb.append("-----------------------------------------------------------------\n");
-
-            for (Cliente c : clients.values()) {
-                sb.append(String.format("%-15s %-20s %-30s %-15d\n",
-                        c.getNif(),
-                        c.getNom(),
-                        c.getDireccio(),
-                        c.getNumero()));
-            }
-
-            areaConsulta.setText(sb.toString());
-        }
-//Se elimina els apartats
-        private void netejarCamps() {
-            campNIF.setText("");
-            campNom.setText("");
-            campDireccio.setText("");
-            campNumero.setText("");
-            campNIF.requestFocus();
-        }
-//Aquest obre la part de mostrar
-        public void obrirInterficie(HashMap<String, Cliente> clients) {
-            {
-                java.awt.EventQueue.invokeLater(new Runnable() {
-                    public void run() {
-                        new GestioClientsGUI(clients, fitxer).setVisible(true);
-                    }
-                });
-            }
-        }
-    }
+//    public class GestioClientsGUI extends javax.swing.JFrame {
+//
+//        private static HashMap<String, Cliente> clients;
+//        private Fitxero fitxer;
+//
+//        public GestioClientsGUI(HashMap<String, Cliente> clients, Fitxero fitxer) {
+//            this.clients = clients;
+//            this.fitxer = fitxer;
+//            initComponents();
+//            setLocationRelativeTo(null);
 
     // Variables declaration - do not modify                     
     private javax.swing.JTextArea areaConsulta;
@@ -376,4 +268,5 @@ public class regitstrarClients extends javax.swing.JFrame {
     private javax.swing.JPanel panellConsulta;
     private javax.swing.JPanel panellRegistre;
     // End of variables declaration                   
+
 }
