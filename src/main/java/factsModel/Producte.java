@@ -52,11 +52,7 @@ public class Producte {
     }
 
     public String[] toArrayString() {
-        //String[] arrStrings = new String[4];
-        //arrStrings[0]=Integer.toString(codigo);
-        //arrStrings[1]= produto;
-        //arrStrings[2]=Double.toString(precio);
-        //arrStrings[3]= tematica;
+       
         return new String[]{Integer.toString(codigo), producto, Double.toString(precio), tematica};
     }
 

@@ -20,6 +20,8 @@ import java.util.List;
  * @author hp
  */
 public class DAO_persistencia {
+    
+    
 
     public void modificarProd(Producte Producte) throws SQLException {
         Connection c = conectar();

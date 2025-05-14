@@ -4,11 +4,19 @@
  */
 package factsModel;
 
+import java.util.HashMap;
+
 /**
  *
  * @author hp
  */
 public class Cliente {
+
+    private static HashMap<String, Cliente> clientes = new HashMap<>();
+
+    public static HashMap<String, Cliente> getClientes() {
+        return clientes;
+    }
 
     private String nif;
     private String nom;
@@ -62,6 +70,10 @@ public class Cliente {
     public boolean equals(Object obj) {
         Cliente c = (Cliente) obj;
         return this.nif.equalsIgnoreCase(c.getNif());
+    }
+
+    public String[] toArrayString() {
+        return new String[]{nif, nom, direccio, numero};
     }
 
 }
