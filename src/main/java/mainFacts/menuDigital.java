@@ -4,12 +4,13 @@
  */
 package mainFacts;
 
-import factsView.mostrarCliente;
 import factsView.mostrarProductes;
 import factsModel.Producte;
+import factsView.mostrarClientes;
 import factsView.registreProducte;
 import factsView.regitstrarClients;
 import factsView.seleccionaCodi;
+import javax.swing.JDialog;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -210,8 +211,13 @@ public class menuDigital extends javax.swing.JFrame {
     //Aquest esta en espera y es mostrara una pantalla 
     private void mostrarProdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarProdActionPerformed
         // TODO add your handling code here:
-        mostrarProductes mostra = new mostrarProductes(this, false);
-        mostra.setVisible(true);
+        mostrarProductes panel = new mostrarProductes(this);
+
+        JDialog dialog = new JDialog(this, "Mostrar Productos", true);
+        dialog.setContentPane(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this); // centra respecto a la ventana actual
+        dialog.setVisible(true);
 
     }//GEN-LAST:event_mostrarProdActionPerformed
 
@@ -219,16 +225,19 @@ public class menuDigital extends javax.swing.JFrame {
 
     private void mostrarClieActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mostrarClieActionPerformed
         // TODO add your handling code here:
-        mostrarCliente pagina = new mostrarCliente(this, false);
-        pagina.setVisible(true);
+        JDialog dialog = new JDialog(this, "Mostrar Clientes", true);
+        mostrarClientes panel = new mostrarClientes(this);
+        dialog.setContentPane(panel);
+        dialog.pack();
+        dialog.setLocationRelativeTo(this);
+        dialog.setVisible(true);
+
     }//GEN-LAST:event_mostrarClieActionPerformed
 
-    //Aquest esta en espera y es mostrara una pantalla 
+//Aquest esta en espera y es mostrara una pantalla 
 
     private void registreFacturacioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registreFacturacioActionPerformed
         // TODO add your handling code here:
-        mostrarCliente pagina = new mostrarCliente(this, false);
-        pagina.setVisible(true);
 
     }//GEN-LAST:event_registreFacturacioActionPerformed
 

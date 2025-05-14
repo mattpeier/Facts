@@ -204,18 +204,30 @@ public class regitstrarClients extends javax.swing.JFrame {
         String nom = jTextNom.getText();
         String direccio = jTextDireccio.getText();
         String numero = jTextNum.getText();
+        if (!validarNIF(nif)) {
+            JOptionPane.showMessageDialog(this, "ERROR: El NIF no es válido. Debe tener el formato: 12345678A", "Error de NIF", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (!validarTelefono(numero)) {
+            JOptionPane.showMessageDialog(this, "ERROR: El número de teléfono no es válido. Debe ser un número de 9 dígitos que comience con 6, 7 o 9.", "Error de Teléfono", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        if (clientes.containsKey(nif)) { // El NIF debe ser una clave única, por lo tanto usamos .containsKey()
+            JOptionPane.showMessageDialog(this, "ERROR: Este NIF ya está registrado.", "Error de Registro", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
 
         Cliente c = new Cliente(nif, nom, direccio, numero);
         if (clientes.equals((String) jTextNif.getText())) {
             JOptionPane.showMessageDialog(this, "ERROR: Aquest NIF ja esta asignat a un client.", "Error: YA EXISTE.", HEIGHT);
         } else {
-            try {
-                controller.addCliente(c);
-            } catch (SQLException ex) {
-                Logger.getLogger(regitstrarClients.class.getName()).log(Level.SEVERE, null, ex);
-            } catch (FactsException ex) {
-                Logger.getLogger(regitstrarClients.class.getName()).log(Level.SEVERE, null, ex);
-            }
+             try {
+            controller.addCliente(c);
+            dispose();
+        } catch (SQLException | FactsException ex) {
+            JOptionPane.showMessageDialog(this, "ERROR: Ha ocurrido un problema al registrar el cliente.", "Error de Base de Datos", JOptionPane.ERROR_MESSAGE);
+            ex.printStackTrace();
+        }
             dispose();
         }
 
@@ -225,7 +237,34 @@ public class regitstrarClients extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_DarrereActionPerformed
+ 
+    private boolean validarNIF(String nif) {
+        if (nif.length() != 9) {
+            return false; 
+        }
+        try {
+            Long.parseLong(nif.substring(0, 8)); 
+        } catch (NumberFormatException e) {
+            return false; 
+        }
+        char letra = nif.charAt(8);
+        return Character.isLetter(letra); 
+    }
+     
+      private boolean validarTelefono(String numero) {
+        if (numero.length() != 9) {
+            return false;
+        }
+        try {
+            Long.parseLong(numero); 
+        } catch (NumberFormatException e) {
+            return false; 
+        }
+        char primerDigito = numero.charAt(0);
+        return primerDigito == '6' || primerDigito == '7' || primerDigito == '9';
+    }
 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Darrere;
     private javax.swing.JButton Registrar;

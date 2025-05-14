@@ -12,12 +12,6 @@ import java.util.HashMap;
  */
 public class Cliente {
 
-    private static HashMap<String, Cliente> clientes = new HashMap<>();
-
-    public static HashMap<String, Cliente> getClientes() {
-        return clientes;
-    }
-
     private String nif;
     private String nom;
     private String direccio;
@@ -75,5 +69,6 @@ public class Cliente {
     public String[] toArrayString() {
         return new String[]{nif, nom, direccio, numero};
     }
-
+    
+    
 }

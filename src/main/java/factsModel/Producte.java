@@ -12,11 +12,6 @@ import java.util.HashMap;
  */
 public class Producte {
 
-    private static HashMap<String, Producte> productes = new HashMap<>();
-
-    public static HashMap<String, Producte> getProductes() {
-        return productes;
-    }
 
     private int codigo;
     private String producto;

@@ -1,4 +1,5 @@
 DAO\DAO_persistencia.class
+mainFacts\main.class
 factsModel\Bossas.class
 mainFacts\menuDigital.class
 factsView\regitstrarClients.class
@@ -6,13 +7,13 @@ factsView\registreProducte$2.class
 factsView\mostrarProductes.class
 mainFacts\menuDigital$4.class
 mainFacts\menuDigital$6.class
-factsView\mostrarCliente.class
 factsMain\view\AskData.class
 factsModel\Cliente.class
 factsView\regitstrarClients$2.class
 mainFacts\menuDigital$1.class
 controladorRegistro\Controlador.class
 factsView\seleccionaCodi$2.class
+factsView\mostrarClientes.class
 factsView\registreProducte$1.class
 mainFacts\menuDigital$3.class
 controladorRegistro\FactsException.class
