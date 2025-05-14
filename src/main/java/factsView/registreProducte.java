@@ -2,12 +2,12 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.facts;
+package factsView;
 
-import view.menudigital.MenuDigital;
-import controlador.excepcion.Controlador;
-import controlador.excepcion.FactsException;
-import model.facts.Producte;
+import mainFacts.menuDigital;
+import controladorRegistro.Controlador;
+import controladorRegistro.FactsException;
+import factsModel.Producte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -21,20 +21,20 @@ import javax.swing.SwingUtilities;
  *
  * @author hp
  */
-public class RegistreProducte extends javax.swing.JFrame {
+public class registreProducte extends javax.swing.JFrame {
 
-    private MenuDigital menuDigital;
-    private RegistreProducte estaVentana;
+    private menuDigital menuDigital;
+    private registreProducte estaVentana;
     private Controlador controller;
     private HashMap<Integer, Producte> productes;
 
     /**
      * Creates new form registreProducte
      */
-    public RegistreProducte(java.awt.Frame parent, boolean modal) {
+    public registreProducte(java.awt.Frame parent, boolean modal) {
         super();
         initComponents();
-        menuDigital = (MenuDigital) parent;
+        menuDigital = (menuDigital) parent;
         controller = Controlador.getInstance();
         aceptar.setEnabled(true);
         cancelar.setEnabled(true);
@@ -185,16 +185,11 @@ public class RegistreProducte extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    //Utilizamos este para poder verificar que los campos este bien puestos
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
         checkEnableAccept();
     }//GEN-LAST:event_jComboBox1ActionPerformed
 
-    //Aqui en el boton aceptar podemos ver los campos para poder registrar el producte
-    //Utilizamos luego en el if unos de los metodos creados en el controlador 
-    //Luego lanzamos la excepcion y la ponemos
     private void aceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_aceptarActionPerformed
         // TODO add your handling code here:
         int codigo = (int) jSpinner2.getValue();
@@ -210,26 +205,24 @@ public class RegistreProducte extends javax.swing.JFrame {
                 try {
                     controller.addProducte(p);
                 } catch (SQLException ex) {
-                    Logger.getLogger(RegistreProducte.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (FactsException ex) {
-                    Logger.getLogger(RegistreProducte.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 dispose();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(RegistreProducte.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FactsException ex) {
-            Logger.getLogger(RegistreProducte.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_aceptarActionPerformed
-    
-    //Para cerrar la ventana
+
     private void cancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelarActionPerformed
-    dispose();
+      
+        dispose();
     }//GEN-LAST:event_cancelarActionPerformed
 
-    //Revisamos que el campo del combo box que es del apartado de codigo sea mas grane que el nuemro puesto
-    //Para asi poder poner bien el apartado.
     public void checkEnableAccept() {
         if ((jTextPane3.getText().length() > 1) && (jComboBox1.getSelectedIndex() > 0)) {
             aceptar.setEnabled(true);

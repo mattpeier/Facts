@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model.facts;
+package factsModel;
 
 import java.util.HashMap;
 
@@ -17,7 +17,7 @@ public class Cliente {
     private String direccio;
     private String numero;
 
-    public Cliente(String nif, String nom, String direccio, String numero) {
+    public Cliente(String nom, String direccio, String direccio1, String numero) {
         this.nom = nif;
         this.nif = nom;
         this.direccio = direccio;
@@ -59,15 +59,13 @@ public class Cliente {
     public void setNumero(String numero) {
         this.numero = numero;
     }
-    
-    //Aqui antes, se utilizaba este para poder verificar si el cliente se repetia
-    //Verificando el nif.
+
     @Override
     public boolean equals(Object obj) {
         Cliente c = (Cliente) obj;
         return this.nif.equalsIgnoreCase(c.getNif());
     }
-    //Para poder guaradar los campos utilizando un metodo compratido
+
     public String[] toArrayString() {
         return new String[]{nif, nom, direccio, numero};
     }

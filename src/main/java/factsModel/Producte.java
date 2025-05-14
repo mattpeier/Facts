@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package model.facts;
+package factsModel;
 
 import java.util.HashMap;
 
@@ -58,18 +58,16 @@ public class Producte {
     }
 
     @Override
-    //Utilizando este meetodo vemos si el objecto en este caso repetido
-    //Viendo esto se puede usar para comprobrar si el codigo puesto no se repite
     public boolean equals(Object obj) {
-        if (this == obj) { // Se verifica en el campo.
+        if (this == obj) { // mateixa direcció de memòria.
             return true;
         }
-        if (obj == null || getClass() != obj.getClass()) { // Aqui no son la misma clase.
+        if (obj == null || getClass() != obj.getClass()) { // no son la mateixa classe
             return false;
         }
-        Producte proToCompare = (Producte) obj; // si es un prodcuto, se comprueba su codigo
+        Producte proToCompare = (Producte) obj; // si es un cotxe, encara que s'hagi de fer casting, comprovo matrícula
         if (codigo == 0) {
-            // Aqui si pasa se lanzaria una excepcion.
+            // Això no hauria de passar mai, hauria de treure una excepció.
             return false;
         } else {
             return codigo == (proToCompare.codigo);

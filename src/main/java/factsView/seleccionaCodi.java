@@ -2,13 +2,15 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package view.facts;
+package factsView;
 
-import controlador.excepcion.Controlador;
-import controlador.excepcion.FactsException;
-import model.facts.Producte;
+import controladorRegistro.Controlador;
+import controladorRegistro.FactsException;
+import factsMain.view.AskData;
+import factsModel.Producte;
 import static java.awt.image.ImageObserver.HEIGHT;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -17,14 +19,14 @@ import javax.swing.JOptionPane;
  *
  * @author hp
  */
-public class CanviPreu extends javax.swing.JFrame {
+public class seleccionaCodi extends javax.swing.JFrame {
 
     private Controlador controller;
 
     /**
      * Creates new form seleccionaPrecio
      */
-    public CanviPreu(java.awt.Frame parent, boolean modal) {
+    public seleccionaCodi(java.awt.Frame parent, boolean modal) {
         controller = Controlador.getInstance();
 
         initComponents();
@@ -59,12 +61,9 @@ public class CanviPreu extends javax.swing.JFrame {
         });
 
         jLabel1.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel1.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setText("Selecciona un codi registrat per cambiar el preu");
 
-        botóAceptar.setBackground(new java.awt.Color(255, 255, 255));
-        botóAceptar.setForeground(new java.awt.Color(0, 0, 0));
         botóAceptar.setText("Aceptar");
         botóAceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -72,8 +71,6 @@ public class CanviPreu extends javax.swing.JFrame {
             }
         });
 
-        botoDarrere.setBackground(new java.awt.Color(255, 255, 255));
-        botoDarrere.setForeground(new java.awt.Color(0, 0, 0));
         botoDarrere.setText("Darrere");
         botoDarrere.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -82,8 +79,7 @@ public class CanviPreu extends javax.swing.JFrame {
         });
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel2.setFont(new java.awt.Font("Segoe UI Emoji", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setText("Posa el preu en el cual vols que siguí");
 
         jSpinner2.setModel(new javax.swing.SpinnerNumberModel(1.0d, 1.0d, null, 1.0d));
@@ -105,7 +101,7 @@ public class CanviPreu extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(botóAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
+                    .addComponent(botóAceptar, javax.swing.GroupLayout.DEFAULT_SIZE, 276, Short.MAX_VALUE)
                     .addComponent(jSpinner1)
                     .addComponent(jSpinner2))
                 .addContainerGap())
@@ -145,14 +141,12 @@ public class CanviPreu extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    //Para poder cerrar la pestaña.
 
     private void botoDarrereActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botoDarrereActionPerformed
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_botoDarrereActionPerformed
-    
-    //Dependiendo si el codigo esta registrado, se lanza una excepcion para decir si no esta registrado o no.
+
     private void botóAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botóAceptarActionPerformed
         // TODO add your handling code here:
 
@@ -161,20 +155,19 @@ public class CanviPreu extends javax.swing.JFrame {
         Producte p = new Producte(codigo, precio);
         try {
             if (controller.existProducte(codigo) == false) {
-                JOptionPane.showMessageDialog(this, "Error: este codigo no esta asignado a ningún producto", "ERROR: NO EXISTE", HEIGHT);
+                JOptionPane.showMessageDialog(this, "ERROR: NO EXISTE", "Error: este codigo no esta asignado a ningún producto.", HEIGHT);
 
             } else {
                 controller.cambiarPrecio(p);
                 dispose();
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CanviPreu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(seleccionaCodi.class.getName()).log(Level.SEVERE, null, ex);
         } catch (FactsException ex) {
-            Logger.getLogger(CanviPreu.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(seleccionaCodi.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_botóAceptarActionPerformed
-    
-    //No sirve para nada.
+
     private void jSpinner1StateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_jSpinner1StateChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_jSpinner1StateChanged
@@ -197,19 +190,19 @@ public class CanviPreu extends javax.swing.JFrame {
 //                }
 //            }
 //        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(CanviPreu.class
+//            java.util.logging.Logger.getLogger(seleccionaCodi.class
 //                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //
 //        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(CanviPreu.class
+//            java.util.logging.Logger.getLogger(seleccionaCodi.class
 //                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //
 //        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(CanviPreu.class
+//            java.util.logging.Logger.getLogger(seleccionaCodi.class
 //                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //
 //        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(CanviPreu.class
+//            java.util.logging.Logger.getLogger(seleccionaCodi.class
 //                    .getName()).log(java.util.logging.Level.SEVERE, null, ex);
 //        }
 //        //</editor-fold>
@@ -217,7 +210,7 @@ public class CanviPreu extends javax.swing.JFrame {
 //        /* Create and display the form */
 //        java.awt.EventQueue.invokeLater(new Runnable() {
 //            public void run() {
-//                new CanviPreu().setVisible(true);
+//                new seleccionaCodi().setVisible(true);
 //            }
 //        });
 //    }
