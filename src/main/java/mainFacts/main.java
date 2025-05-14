@@ -16,11 +16,7 @@ import java.sql.SQLException;
  */
 public class main {
 
-    public static void main(String[] args) throws FactsException, SQLException {
-        Controlador controlador = Controlador.getInstance();
-        controlador.addProduct(new Producte(1, "Camiseta", 9.99, "Star Wars"));
-        controlador.addProduct(new Producte(2, "Bossa", 5.00, "Marvel"));
-        controlador.addCliente(new Cliente("53319061R", "Aroa", "Avenida Corazon", "685703376"));
+    public static void main(String[] args)  {
 
         menuDigital menu = new menuDigital();
         menu.setVisible(true);

@@ -80,7 +80,7 @@ public class mostrarProductes extends javax.swing.JPanel {
     public void updateTable() {
         productes = (HashMap<Integer, Producte>) Controlador.getInstance().getProductes();
         DefaultTableModel dtm = new DefaultTableModel();
-        dtm.setColumnIdentifiers(new String[]{"Código", "Tipo Producto", "Precio", "Temática"});
+        dtm.setColumnIdentifiers(new String[]{"Código", "Tipo Producto", "Temática", "Precio"});
         for (Producte c : productes.values()) {
             dtm.addRow(c.toArrayString());
         }

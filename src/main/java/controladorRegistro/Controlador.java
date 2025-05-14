@@ -52,9 +52,7 @@ public class Controlador {
 
     }
 
-    public void addProduct(Producte producte) {
-        productes.put(producte.getCodigo(), producte);
-    }
+    
 
     public boolean checkEnableAccept(int codigo) {
         throw new UnsupportedOperationException();
@@ -83,11 +81,9 @@ public class Controlador {
 
     }
 
-    public void cambiarPrecio(int codigo, double precioNuevo) {
-        Producte p = productes.get(codigo);
-        if (p != null) {
-            p.setPrecio(precioNuevo);
-        }
+    public void cambiarPrecio(Producte p) throws SQLException {
+        dao.modificarProd(p);
+        
     }
 
 }
