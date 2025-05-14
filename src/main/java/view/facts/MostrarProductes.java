@@ -77,7 +77,7 @@ public class MostrarProductes extends javax.swing.JPanel {
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-//Per mostrar la tabla de mostra del producte
+//Per mostrar la tabla de mostra del producte, se updatea dependiendo de lo que se haya registrado.
     public void updateTable() {
         productes = (HashMap<Integer, Producte>) Controlador.getInstance().getProductes();
         DefaultTableModel dtm = new DefaultTableModel();

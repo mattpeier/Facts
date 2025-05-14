@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package controlador.excepcion;
+package controladorRegistro;
 
 /**
  *
@@ -10,7 +10,7 @@ package controlador.excepcion;
  */
 public class FactsException extends Exception {
     
-    //Aqui creamos las excepciones para poder lanzarlas.
+    //Aqui podem llençar una excepcio 
     public FactsException(String message) {
         super(message);
     }  

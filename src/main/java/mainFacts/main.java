@@ -2,24 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package main;
+package mainFacts;
 
-import view.menudigital.MenuDigital;
-import controlador.excepcion.Controlador;
-import controlador.excepcion.FactsException;
-import model.facts.Cliente;
-import model.facts.Producte;
+import controladorRegistro.Controlador;
+import controladorRegistro.FactsException;
+import factsModel.Cliente;
+import factsModel.Producte;
 import java.sql.SQLException;
 
 /**
  *
  * @author alget
  */
-public class Main {
+public class main {
 
     public static void main(String[] args)  {
-        //Llamamos al menu para poder iniciar la aplicacion.
-        MenuDigital menu = new MenuDigital();
+
+        menuDigital menu = new menuDigital();
         menu.setVisible(true);
     }
 }

@@ -2,29 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package view.facts;
+package factsView;
 
-import controlador.excepcion.Controlador;
-import model.facts.Cliente;
-import model.facts.Producte;
+import controladorRegistro.Controlador;
+import factsModel.Cliente;
+import factsModel.Producte;
 import java.util.HashMap;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-import view.menudigital.MenuDigital;
+import mainFacts.menuDigital;
 
 /**
  *
  * @author alget
  */
-public class MostrarClientes extends javax.swing.JPanel {
+public class mostrarClientes extends javax.swing.JPanel {
 private Controlador controlador;
-    private MenuDigital menuDigital;
-    private MostrarClientes estaVentana;
+    private menuDigital menuDigital;
+    private mostrarClientes estaVentana;
     private HashMap<Integer, Cliente> clientes;
     /**
      * Creates new form mostrarClientes
      */
-    public MostrarClientes(MenuDigital aThis) {
+    public mostrarClientes(menuDigital aThis) {
         initComponents();
         controlador = Controlador.getInstance();
         this.menuDigital = aThis;
@@ -44,7 +44,6 @@ private Controlador controlador;
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jTable1.setBackground(new java.awt.Color(255, 102, 102));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -76,8 +75,6 @@ private Controlador controlador;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 
-    
-    //mostramos la tabla para poder updatear con los campos registrados 
 public void updateTable() {
         clientes = (HashMap<Integer, Cliente>) Controlador.getInstance().getClientes();
         DefaultTableModel dtm = new DefaultTableModel();
