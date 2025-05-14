@@ -10,7 +10,10 @@ import controladorRegistro.FactsException;
 import factsModel.Producte;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.util.HashMap;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
 
@@ -194,12 +197,24 @@ public class registreProducte extends javax.swing.JFrame {
         double precio = (double) jSpinner1.getValue();
         String tematica = jTextPane3.getText();
 
-        Producte p = new Producte(codigo, producto, precio, tematica);
-        if (productes.containsKey((int) jSpinner2.getValue())) {
-            JOptionPane.showMessageDialog(this, "ERROR: Aquest CODI ya esta asgnat a un producte.", "Error: YA EXISTE.", HEIGHT);
-        } else {
-            controller.addProduct(p);
-            dispose();
+        Producte p = new Producte(codigo, producto, tematica, precio);
+        try {
+            if (controller.existProducte(codigo)==true) {
+                JOptionPane.showMessageDialog(this, "ERROR: Aquest CODI ya esta asgnat a un producte.", "Error: YA EXISTE.", HEIGHT);
+            } else {
+                try {
+                    controller.addProducte(p);
+                } catch (SQLException ex) {
+                    Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (FactsException ex) {
+                    Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                dispose();
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (FactsException ex) {
+            Logger.getLogger(registreProducte.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_aceptarActionPerformed
 

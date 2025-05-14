@@ -19,7 +19,7 @@ public class Producte {
     private String tematica;
     private Cliente cliente;
 
-    public Producte(int codigo, String producto, double precio, String tematica) {
+    public Producte(int codigo, String producto, String tematica, double precio) {
 
         this.codigo = codigo;
         this.producto = producto;
@@ -28,6 +28,12 @@ public class Producte {
         this.cliente = cliente;
 
     }
+
+    public Producte(int codigo, double precio) {
+        this.codigo = codigo;
+        this.precio = precio;
+    }
+    
 
     public Producte(int codigo) {
         this.codigo = codigo;

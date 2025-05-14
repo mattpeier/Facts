@@ -152,12 +152,14 @@ public class seleccionaCodi extends javax.swing.JFrame {
 
         int codigo = (int) jSpinner1.getValue();
         double precio = (double) jSpinner2.getValue();
+        Producte p = new Producte(codigo, precio);
         try {
             if (controller.existProducte(codigo) == false) {
-                controller.cambiarPrecio(codigo, precio);
-                dispose();
-            } else {
                 JOptionPane.showMessageDialog(this, "ERROR: NO EXISTE", "Error: este codigo no esta asignado a ningún producto.", HEIGHT);
+
+            } else {
+                controller.cambiarPrecio(p);
+                dispose();
             }
         } catch (SQLException ex) {
             Logger.getLogger(seleccionaCodi.class.getName()).log(Level.SEVERE, null, ex);

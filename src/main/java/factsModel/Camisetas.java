@@ -13,7 +13,7 @@ import factsModel.Producte;
 public class Camisetas extends Producte {
     
     public Camisetas(int codigo, String producto, double precio, String tematica) {
-        super(codigo, producto, precio, tematica);
+        super(codigo, producto, tematica, precio);
     }
     
 }
